@@ -64,7 +64,7 @@ public final class BmpWriter {
 			for (int x = 0; x < width; x++) {
 				PixelColor pixels = image.getRgbPixel(x, y);
 				row[x * bytesPerPixel + 2] = (byte) (pixels.r);  // rot
-				row[x * bytesPerPixel + 1] = (byte) (pixels.g);  // grün
+				row[x * bytesPerPixel + 1] = (byte) (pixels.g);  // grÃ¼n
 				row[x * bytesPerPixel + 0] = (byte) (pixels.b);  // blau
 			}
 			out1.writeBytes(row);

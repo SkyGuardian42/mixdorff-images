@@ -46,7 +46,7 @@ public final class RgbImage {
 		
 //		System.out.println("schreibe " 
 //							+ " blau " + pixels[y * width + x].b  
-//							+ " grün " + pixels[y * width + x].g  
+//							+ " grÃ¼n " + pixels[y * width + x].g  
 //							+ " rot " + pixels[y * width + x].r);
 		return pixels[y * width + x];
 	}
@@ -58,7 +58,7 @@ public final class RgbImage {
 		pixels[y * width + x] = pixel;
 //		System.out.println("lese " 
 //							+ " blau " + pixels[y * width + x].b  
-//							+ " grün " + pixels[y * width + x].g  
+//							+ " grÃ¼n " + pixels[y * width + x].g  
 //							+ " rot " + pixels[y * width + x].r);
 	}	
 	

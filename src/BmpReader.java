@@ -66,10 +66,10 @@ public final class BmpReader {
 			colorsUsed = in1.readInt32();
 			colorsImportant = in1.readInt32();
 			
-			System.out.println("Dateigröße " + fileSize);
+			System.out.println("DateigrÃ¶ÃŸe " + fileSize);
 			System.out.println("Bits pro Pixel " + bitsPerPixel);
 			System.out.println("Breite " + width);
-			System.out.println("Höhe " + height);
+			System.out.println("HÃ¶he " + height);
 			
 			if (width <= 0)
 				throw new RuntimeException("Invalid width: " + width);
@@ -143,7 +143,7 @@ public final class BmpReader {
 			for (int x = 0; x < width; x++) {
 				PixelColor pixel = new PixelColor(
 											row[x * bytesPerPixel + 2] & 0xFF,   // rot
-											row[x * bytesPerPixel + 1] & 0xFF,   // grün
+											row[x * bytesPerPixel + 1] & 0xFF,   // grÃ¼n
 											row[x * bytesPerPixel + 0] & 0xFF);  // blau
 				image.setRgbPixel(x, y, pixel);
 			}

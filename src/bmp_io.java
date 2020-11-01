@@ -7,8 +7,8 @@ import java.io.OutputStream;
 public final class bmp_io {
 	
 	public static void main(String[] args) throws IOException {
-		String inFilename = null;
-		String outFilename = null;
+		String inFilename = "grating_H11.bmp";
+		String outFilename = "modified.bmp";
 		PixelColor pc = null;
 		BmpImage bmp = null;
 		
@@ -19,7 +19,7 @@ public final class bmp_io {
 
 		// Implementierung bei einem Eingabeparamter
 		
-		inFilename = args[0];
+//		inFilename = args[0];
 		InputStream in = new FileInputStream(inFilename);
 		bmp = BmpReader.read_bmp(in);
 		
@@ -43,7 +43,7 @@ public final class bmp_io {
 		
 		// Implementierung bei Ein- und Ausgabeparamter
 
-		outFilename = args[1];
+//		outFilename = args[1];
 		OutputStream out = new FileOutputStream(outFilename);
 		
 		// erzeuge graustufenbild
