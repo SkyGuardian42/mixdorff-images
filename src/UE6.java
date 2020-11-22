@@ -2,7 +2,7 @@ import java.io.*;
 
 public class UE6 {
     public static void main(String[] args) throws IOException{
-        String inFilename = "nature_04.bmp";
+        String inFilename = "nature_04_y.bmp";
         String outFilename = "modified.bmp";
 
         // Read file
@@ -12,22 +12,26 @@ public class UE6 {
 
         OutputStream out = new FileOutputStream(outFilename);
 
+        // store pixel frequency in array, index = color, value = frequency
+        int[] pixelColors = new int[256];
+
         for (int y = 0; y < bmp.image.getHeight(); y++) {
             for (int x = 0; x < bmp.image.getWidth(); x++) {
                 PixelColor col = bmp.image.getRgbPixel(x,y);
-//                bmp.image.setRgbPixel(x,y, new PixelColor(0, 0, col.b));
-                double yy = (0.299 * col.r) + (0.587 * col.g) + (0.114 * col.b);
-                double cb = ((-0.169 * col.r) + (-0.331 * col.g) + (0.5 * col.b)) + 128;
-                double cr = ((0.5 * col.r) + (-0.419 * col.g) + (-0.081 * col.b)) + 128;
-
-
-                bmp.image.setRgbPixel(x,y, new PixelColor((int) cb, (int) cb, (int) cb));
-
-
-//                System.out.println(yy + " " + cb + " " + cr);
+                int val = (int)(col.r * -1);
+                val = (int)(col.r * -1)+255;
+                int valClamped = Math.max(0, Math.min(255, val));
+                bmp.image.setRgbPixel(x,y, new PixelColor(valClamped, valClamped, valClamped));
+                pixelColors[valClamped]++;
             }
         }
 
+        // write to file, newline separated, color value = row number
+        PrintWriter writer = new PrintWriter("nature_04_mal_10_0.txt", "UTF-8");
+        for(int i : pixelColors) {
+            writer.println(i);
+        }
+        writer.close();
 
         try {
             BmpWriter.write_bmp(out, bmp);
