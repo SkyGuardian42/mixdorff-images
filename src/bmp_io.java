@@ -4,7 +4,7 @@ public final class bmp_io {
 
     public static void main(String[] args) throws IOException {
         String inFilename = "manmade_04.bmp";
-        String outFilename = "modified.bmp";
+        String outFilename = "manmade_04_y.bmp";
         PixelColor pc = null;
         BmpImage bmp = null;
 
@@ -41,14 +41,14 @@ public final class bmp_io {
         OutputStream out = new FileOutputStream(outFilename);
 
         // erzeuge graustufenbild
-        //        for (int y = 0; y < bmp.image.getHeight(); y++) {
-        //            for (int x = 0; x < bmp.image.getWidth(); x++) {
-        //                PixelColor col = bmp.image.getRgbPixel(x,y);
-        //                int y_val = (int) (col.r * 0.3 + col.g * 0.6 + col.b * 0.1);
-        //
-        //                bmp.image.setRgbPixel(x,y, new PixelColor(y_val, y_val, y_val));
-        //            }
-        //        }
+                for (int y = 0; y < bmp.image.getHeight(); y++) {
+                    for (int x = 0; x < bmp.image.getWidth(); x++) {
+                        PixelColor col = bmp.image.getRgbPixel(x,y);
+                        int y_val = (int) (col.r * 0.3 + col.g * 0.6 + col.b * 0.1);
+
+                        bmp.image.setRgbPixel(x,y, new PixelColor(y_val, y_val, y_val));
+                    }
+                }
 
         // downsampling
         //        for (int y = 0; y < bmp.image.getHeight(); y++) {
@@ -64,7 +64,7 @@ public final class bmp_io {
 
         // bitreduzierung
 
-        int reduced_bits = 6;
+//        int reduced_bits = 6;
 //        for (int y = 0; y < bmp.image.getHeight(); y++) {
 //            for (int x = 0; x < bmp.image.getWidth(); x++) {
 //                PixelColor col = bmp.image.getRgbPixel(x,y);
@@ -78,21 +78,21 @@ public final class bmp_io {
 
         // bitreduzierung differenz
 //        int bitsPerColor = 8;
-        reduced_bits = 4;
-        for (int y = 0; y < bmp.image.getHeight(); y++) {
-            for (int x = 0; x < bmp.image.getWidth(); x++) {
-                PixelColor col = bmp.image.getRgbPixel(x,y);
-                int r = ((col.r>>reduced_bits)<<reduced_bits);
-                int g = ((col.g>>reduced_bits)<<reduced_bits);
-                int b = ((col.b>>reduced_bits)<<reduced_bits);
-
-                r = (col.r - r)<<reduced_bits;
-                g = (col.g - g)<<reduced_bits;
-                b = (col.b - b)<<reduced_bits;
-
-                bmp.image.setRgbPixel(x,y, new PixelColor(r,g,b));
-            }
-        }
+//        reduced_bits = 4;
+//        for (int y = 0; y < bmp.image.getHeight(); y++) {
+//            for (int x = 0; x < bmp.image.getWidth(); x++) {
+//                PixelColor col = bmp.image.getRgbPixel(x,y);
+//                int r = ((col.r>>reduced_bits)<<reduced_bits);
+//                int g = ((col.g>>reduced_bits)<<reduced_bits);
+//                int b = ((col.b>>reduced_bits)<<reduced_bits);
+//
+//                r = (col.r - r)<<reduced_bits;
+//                g = (col.g - g)<<reduced_bits;
+//                b = (col.b - b)<<reduced_bits;
+//
+//                bmp.image.setRgbPixel(x,y, new PixelColor(r,g,b));
+//            }
+//        }
 
         try {
             BmpWriter.write_bmp(out, bmp);
